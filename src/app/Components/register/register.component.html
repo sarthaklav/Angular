@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-lg-6 col-md-9 mx-auto">
+    <form [formGroup]="newRetailerForm">
+      <div class="card mt-2">
+        <div class="card-header bg-secondary text-white">
+          <h4>Registration Form</h4>
+        </div>
+        <div class="card-body">
+          <div class="form-group form-row">
+            <label for="retailerName" class="col-form-label col-md-4">Retailer Name: *</label>
+            <div class="col-md-8">
+              <input type="text" placeholder="Retailer Name" class="form-control" id="retailerName" formControlName="retailerName" [ngClass]="getFormControlCssClass(newRetailerForm.get('retailerName'), newRetailerForm)" />
+              <small class="form-text text-muted">Name of the retailer.</small>
+              <span class="text-danger" *ngIf="newRetailerForm.get('retailerName').invalid && newRetailerForm.get('retailerName').errors.required && (newRetailerForm.get('retailerName').touched || newRetailerForm.get('retailerName').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+              <span class="text-danger" *ngIf="newRetailerForm.get('retailerName').invalid && newRetailerForm.get('retailerName').errors.minlength && (newRetailerForm.get('retailerName').touched || newRetailerForm.get('retailerName').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+              <span class="text-danger" *ngIf="newRetailerForm.get('retailerName').invalid && newRetailerForm.get('retailerName').errors.maxlength && (newRetailerForm.get('retailerName').touched || newRetailerForm.get('retailerName').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <label for="retailerMobile" class="col-form-label col-md-4">Mobile:</label>
+            <div class="col-md-8">
+              <input type="text" placeholder="Mobile" class="form-control" id="retailerMobile" formControlName="retailerMobile" [ngClass]="getFormControlCssClass(newRetailerForm.get('retailerMobile'), newRetailerForm)" />
+              <small class="form-text text-muted">10 digit mobile number of the retailer | Can't be duplicate.</small>
+              <span class="text-danger" *ngIf="newRetailerForm.get('retailerMobile').invalid && newRetailerForm.get('retailerMobile').errors.required && (newRetailerForm.get('retailerMobile').touched || newRetailerForm.get('retailerMobile').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+              <span class="text-danger" *ngIf="newRetailerForm.get('retailerMobile').invalid && newRetailerForm.get('retailerMobile').errors.pattern && (newRetailerForm.get('retailerMobile').touched || newRetailerForm.get('retailerMobile').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <label for="email" class="col-form-label col-md-4">Email:</label>
+            <div class="col-md-8">
+              <input type="text" placeholder="Email" class="form-control" id="email" formControlName="email" [ngClass]="getFormControlCssClass(newRetailerForm.get('email'), newRetailerForm)" />
+              <small class="form-text text-muted">Email address of the retailer | Can't be duplicate.</small>
+              <span class="text-danger" *ngIf="newRetailerForm.get('email').invalid && newRetailerForm.get('email').errors.required && (newRetailerForm.get('email').touched || newRetailerForm.get('email').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+              <span class="text-danger" *ngIf="newRetailerForm.get('email').invalid && newRetailerForm.get('email').errors.email && (newRetailerForm.get('email').touched || newRetailerForm.get('email').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+            </div>
+          </div>
+          <div class="form-group form-row">
+            <label for="password" class="col-form-label col-md-4">Password:</label>
+            <div class="col-md-8">
+              <input type="password" placeholder="Password" class="form-control" id="password" formControlName="password" [ngClass]="getFormControlCssClass(newRetailerForm.get('password'), newRetailerForm)" />
+              <small class="form-text text-muted">At least one uppercase letter, one lowercase letter and one digit.</small>
+              <span class="text-danger" *ngIf="newRetailerForm.get('password').invalid && newRetailerForm.get('password').errors.required && (newRetailerForm.get('password').touched || newRetailerForm.get('password').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+              <span class="text-danger" *ngIf="newRetailerForm.get('password').invalid && newRetailerForm.get('password').errors.pattern && (newRetailerForm.get('password').touched || newRetailerForm.get('password').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+            </div>
+          </div>
+          <div class="card-footer text-right">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnAddRetailerCancel">
+              <i class="fa fa-times-circle"></i> Cancel
+            </button>
+
+        
+            <button type="submit" class="btn btn-success ml-1" (click)="onAddRetailerClick($event)" [disabled]="newRetailerDisabled">
+              <span *ngIf="!newRetailerDisabled"><i class="fa fa-save"></i> Save</span>
+              <span *ngIf="newRetailerDisabled"><i class="fa fa-circle-o-notch  fa-spin"></i> Saving</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+

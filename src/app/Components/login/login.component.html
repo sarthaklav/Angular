@@ -16,6 +16,7 @@
           </div>
         </div>
         <div class="card-footer text-right">
+          <span class="text-danger" *ngIf="isInvalidLogin">Invalid login</span>
           <button class="btn btn-success" (click)="onLoginClick()"><span class="fa fa-sign-in"></span> Login</button>
         </div>
       </div>

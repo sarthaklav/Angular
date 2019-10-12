@@ -55,7 +55,7 @@ export class RetailersService
 
   GetRetailerByEmailAndPassword(Email: string, Password: string): Observable<Retailer>
   {
-    return this.httpClient.get<Retailer>(`/api/retailers?email=${Email}&password=${Password}`);
+    return this.httpClient.get<Retailer>(`/api/retailers?password=${Password}`);
   }
 
   uuidv4()

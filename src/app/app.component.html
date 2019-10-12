@@ -9,7 +9,7 @@
         <a class="nav-link" [routerLink]=" [ '/login' ] " [routerLinkActive]="['active']" *ngIf="!userAccountService.isLoggedIn">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"  [routerLink]="['/register' ]" [routerLinkActive]="['active']" *ngIf="!userAccountService.isLoggedIn" (click)="onCreateRetailerClick()">Register</a>
+        <a class="nav-link"  [routerLink]="['/register' ]" [routerLinkActive]="['active']" *ngIf="!userAccountService.isLoggedIn">Register</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]=" [ '/retailer', 'profile' ] " [routerLinkActive]="['active']" *ngIf="userAccountService.isLoggedIn &&  userAccountService.currentUserType == 'Retailer' ">Home</a>

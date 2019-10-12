@@ -4,6 +4,9 @@ import { RetailersService } from '../../Services/retailers.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as $ from "jquery";
 import { GreatOutdoorsComponentBase } from '../../greatOutdoors-component';
+import { UserAccountService } from 'src/app/Services/user-account.service';
+import { User } from 'src/app/Models/user';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,13 +16,12 @@ import { GreatOutdoorsComponentBase } from '../../greatOutdoors-component';
 })
 
 export class RegisterComponent extends GreatOutdoorsComponentBase implements OnInit {
-  retailers: Retailer[] = [];
   newRetailerForm: FormGroup;
   newRetailerDisabled: boolean = false;
   newRetailerFormErrorMessages: any;
 
 
-  constructor(private retailersService: RetailersService) {
+  constructor(private retailersService: RetailersService, private userAccountService: UserAccountService, private router: Router) {
     super();
     this.newRetailerForm = new FormGroup({
       retailerName: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(40)]),
@@ -36,9 +38,9 @@ export class RegisterComponent extends GreatOutdoorsComponentBase implements OnI
     };
   }
 
-    ngOnInit(){
+  ngOnInit() {
 
-    }
+  }
 
   getFormControlCssClass(formControl: FormControl, formGroup: FormGroup): any {
     return {
@@ -48,42 +50,38 @@ export class RegisterComponent extends GreatOutdoorsComponentBase implements OnI
   }
 
 
-    onCreateRetailerClick() {
-      this.newRetailerForm.reset();
-      this.newRetailerForm["submitted"] = false;
-    }
 
+  onAddRetailerClick(event) {
+    this.newRetailerForm["submitted"] = true;
+    if (this.newRetailerForm.valid) {
+      this.newRetailerDisabled = true;
+      var retailer: Retailer = this.newRetailerForm.value;
 
+      this.retailersService.AddRetailer(retailer).subscribe((addResponse) => {
+        
+        this.newRetailerDisabled = false;
+        //this.showRetailersSpinner = true;
 
+        this.retailersService.GetRetailerByEmailAndPassword(retailer.email, retailer.password).subscribe((newResponse) => {
+          this.userAccountService.currentUser = new User(retailer.email, retailer.retailerName);
+          this.userAccountService.currentUserType = "Retailer";
+          this.userAccountService.currentUserId = newResponse[0].retailerId;
+          this.userAccountService.isLoggedIn = true;
+          this.router.navigate(["/retailer", "profile"]);
+        });
 
-    onAddRetailerClick(event) {
-      this.newRetailerForm["submitted"] = true;
-      if (this.newRetailerForm.valid) {
-        this.newRetailerDisabled = true;
-        var retailer: Retailer = this.newRetailerForm.value;
+        
 
-        this.retailersService.AddRetailer(retailer).subscribe((addResponse) => {
-          this.newRetailerForm.reset();
-          $("#btnAddRetailerCancel").trigger("click");
+      },
+        (error) => {
+          console.log(error);
           this.newRetailerDisabled = false;
-         //this.showRetailersSpinner = true;
-
-          this.retailersService.GetAllRetailers().subscribe((getResponse) => {
-           //this.showRetailersSpinner = false;
-            this.retailers = getResponse;
-          }, (error) => {
-            console.log(error);
-          });
-        },
-          (error) => {
-            console.log(error);
-            this.newRetailerDisabled = false;
-          });
-      }
-      else {
-        super.getFormGroupErrors(this.newRetailerForm);
-      }
+        });
     }
+    else {
+      super.getFormGroupErrors(this.newRetailerForm);
+    }
+  }
 
 
 }

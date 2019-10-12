@@ -39,8 +39,8 @@
             <div class="col-md-8">
               <input type="password" placeholder="Password" class="form-control" id="password" formControlName="password" [ngClass]="getFormControlCssClass(newRetailerForm.get('password'), newRetailerForm)" />
               <small class="form-text text-muted">At least one uppercase letter, one lowercase letter and one digit.</small>
-              <span class="text-danger" *ngIf="newRetailerForm.get('password').invalid && newRetailerForm.get('password').errors.required && (newRetailerForm.get('password').touched || newRetailerForm.get('password').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
-              <span class="text-danger" *ngIf="newRetailerForm.get('password').invalid && newRetailerForm.get('password').errors.pattern && (newRetailerForm.get('password').touched || newRetailerForm.get('password').dirty || newRetailerForm.submitted)">Retailer name can not be blank</span>
+              <span class="text-danger" *ngIf="newRetailerForm.get('password').invalid && newRetailerForm.get('password').errors.required && (newRetailerForm.get('password').touched || newRetailerForm.get('password').dirty || newRetailerForm.submitted)">Password can not be blank</span>
+              <span class="text-danger" *ngIf="newRetailerForm.get('password').invalid && newRetailerForm.get('password').errors.pattern && (newRetailerForm.get('password').touched || newRetailerForm.get('password').dirty || newRetailerForm.submitted)">Pasword is invalid</span>
             </div>
           </div>
           <div class="card-footer text-right">

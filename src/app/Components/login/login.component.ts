@@ -11,6 +11,7 @@ import { User } from '../../Models/user';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isInvalidLogin: boolean = false;
 
   constructor(private userAccountService: UserAccountService, private router: Router) {
     this.loginForm = new FormGroup(
@@ -26,11 +27,15 @@ export class LoginComponent implements OnInit {
   onLoginClick() {
     this.userAccountService.authenticate(this.loginForm.value.email, this.loginForm.value.password).subscribe((response) => {
       if (response != null && response.length > 0) {
+        console.log(response);
         this.userAccountService.currentUser = new User(this.loginForm.value.email, response[0].retailerName);
         this.userAccountService.currentUserType = "Retailer";
         this.userAccountService.currentUserId = response[0].retailerId;
         this.userAccountService.isLoggedIn = true;
         this.router.navigate(["/retailer", "profile"]);
+      }
+      else {
+        this.isInvalidLogin = true;
       }
     }, (error) => {
         console.log(error);

@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   
-  //{ path: "retailer", loadChildren: () => import("./RetailerModule/retailer.module").then(m => m.RetailerModule) },
+  { path: "retailer", loadChildren: () => import("./RetailerModule/retailer.module").then(m => m.RetailerModule) },
   { path: "**", redirectTo: '/login', pathMatch: 'full' },
 ];
 

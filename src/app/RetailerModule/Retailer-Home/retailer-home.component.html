@@ -1,192 +1,82 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+   
+    <li class="breadcrumb-item active" aria-current="page">Home</li>
+  </ol>
+</nav>
+
 <div class="row">
-  <div class="col-md-3 col-lg-2 ml-0 pl-0 pt-0 pr-0 border-right left-menu">
-    <div class="p-2">
-      <h5>
-        Sales People <span class="badge badge-secondary float-right" *ngIf="salesPersons.length > 0">{{salesPersons.length}}</span>
-      </h5>
-    </div>
-    <div class="list-group mb-5">
-      <a class="list-group-item list-group-item-action list-group-item-primary" data-toggle="modal" href="#newSalesPersonModal" (click)="onCreateSalesPersonClick()">Add Sales Person</a>
-    </div>
-    <div class="p-2 border-top"><h5>View</h5></div>
-    <div class="px-2">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="viewSalesPersonName" [(ngModel)]="viewSalesPersonCheckBoxes.salesPersonName">
-        <label class="form-check-label" for="viewSalesPersonName">
-          Sales Person Name
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="viewMobile" [(ngModel)]="viewSalesPersonCheckBoxes.mobile">
-        <label class="form-check-label" for="viewMobile">
-          Mobile
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="viewEmail" [(ngModel)]="viewSalesPersonCheckBoxes.email">
-        <label class="form-check-label" for="viewEmail">
-          Email
-        </label>
-      </div>
-
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="viewJoinedOn" [(ngModel)]="viewSalesPersonCheckBoxes.joinedOn">
-        <label class="form-check-label" for="viewJoinedOn">
-          Joined On
-        </label>
-      </div>
-
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="viewLastModifiedOn" [(ngModel)]="viewSalesPersonCheckBoxes.lastModifiedOn">
-        <label class="form-check-label" for="viewLastModifiedOn">
-          Last Modified On
-        </label>
-      </div>
-      <div class="form-group my-2">
-        <button class="btn btn-secondary btn-sm mr-1" (click)="onViewSelectAllClick()">Select All</button>
-        <button class="btn btn-secondary btn-sm" (click)="onViewDeselectAllClick()">Deselect All</button>
-      </div>
-    </div>
-
-    <div class="p-2 border-top mt-4"><h5>Sort by</h5></div>
-    <div class="px-2">
-      <div class="form-group">
-        <select class="form-control" [(ngModel)]="sortBy">
-          <option value="salesPersonName">Name</option>
-          <option value="salesPersonMobile">Mobile</option>
-          <option value="email">Email</option>
-          <option value="joiningDate">Joined On</option>
-          <option value="lastModifiedDateTime">Last Modified On</option>
-        </select>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" id="sortAscending" value="ASC" [(ngModel)]="sortDirection">
-        <label class="form-check-label" for="sortAscending">
-          Ascending
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" id="sortDescending" value="DESC" [(ngModel)]="sortDirection">
-        <label class="form-check-label" for="sortDescending">
-          Descending
-        </label>
-      </div>
-      <div class="form-group my-2">
-        <button class="btn btn-secondary btn-sm mr-1 px-3" (click)="onBtnSortClick()">Sort</button>
-      </div>
-    </div>
+  <div class="col-md-12">
+    <h3>Your Profile</h3>
+    <button>Place Order</button>
+    <button>Add Address</button>
   </div>
 
-  <div class="col-md-9 col-lg-10">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Admin</a></li>
-        <li class="breadcrumb-item active" aria-current="page">
-          Sales People
-          <i class="fa fa-circle-o-notch  fa-spin" *ngIf="showSalesPersonsSpinner"></i>
-        </li>
-      </ol>
-    </nav>
-    <!--<h4>SalesPersons </h4>-->
-    <!--<button class="btn btn-primary" data-toggle="modal" data-target="#newSalesPersonModal" (click)="onCreateSalesPersonClick()">Create SalesPerson</button>-->
-    <table class="table mt-2">
-      <thead>
-        <tr class="table-secondary">
-          <th *ngIf="viewSalesPersonCheckBoxes.salesPersonName">Sales Person Name</th>
-          <th *ngIf="viewSalesPersonCheckBoxes.mobile">Mobile</th>
-          <th *ngIf="viewSalesPersonCheckBoxes.email">Email</th>
-          <th *ngIf="viewSalesPersonCheckBoxes.joinedOn">Joined on</th>
-          <th *ngIf="viewSalesPersonCheckBoxes.lastModifiedOn">Last Modified on</th>
-          <th class="text-secondary">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let salesPerson of salesPersons; let index = index">
-          <td style="font-size:120%" *ngIf="viewSalesPersonCheckBoxes.mobile">{{salesPerson.salesPersonName}}</td>
-          <td *ngIf="viewSalesPersonCheckBoxes.mobile">{{salesPerson.salesPersonMobile}}</td>
-          <td *ngIf="viewSalesPersonCheckBoxes.email">{{salesPerson.email}}</td>
-          <td *ngIf="viewSalesPersonCheckBoxes.joinedOn">{{salesPerson.joiningDate}}</td>
-          <td *ngIf="viewSalesPersonCheckBoxes.lastModifiedOn">{{salesPerson.lastModifiedDateTime}}</td>
-          <td>
-            <div class="btn-group">
-              <button class="btn btn-secondary" data-toggle="modal" data-target="#editSalesPersonModal" (click)="onEditSalesPersonClick(index)">Edit</button>
-              <button class="btn btn-danger" data-toggle="modal" data-target="#deleteSalesPersonModal" (click)="onDeleteSalesPersonClick(index)">Delete</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="table col-md-6 table-bordered" align="center">
+
+    <tr>
+      <th scope="row">Name</th>
+      <td width="70%">{{retailer.retailerName}} </td>
+
+    </tr>
+  
+    <tr>
+      <th scope="row">Mobile</th>
+      <td>{{retailer.retailerMobile}}</td>
+
+    </tr>
+
+    <tr>
+      <th scope="row">Email</th>
+      <td>{{retailer.email}}</td>
+
+    </tr>
+
+
+
+  </table>
+
 </div>
 
+<div class="row">
+  <table class="table col-md-6 table-borderless " align="center">
+    <tr>
+      
+      <td align="right" width="90%"> <button class="btn btn-primary" data-toggle="modal" data-target="#changePasswordModal" (click)="onChangePasswordClick()">Change Password</button></td>
+      <td align="left"> <button class="btn btn-secondary" data-toggle="modal" data-target="#editRetailerModal" (click)="onEditRetailerClick(index)">Edit</button></td>
+    </tr>
+  </table>
+</div>
 
-<!-- New SalesPerson Modal -->
-<form [formGroup]="newSalesPersonForm">
-  <div class="modal fade" id="newSalesPersonModal" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Change Password Modal -->
+<form [formGroup]="changePasswordForm">
+  <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header bg-info text-white">
-          <h5 class="modal-title">Add Sales Person</h5>
+          <h5 class="modal-title">Change Password</h5>
           <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <div class="form-group form-row">
-            <label for="salesPersonName" class="col-form-label col-md-4">Sales Person Name: </label>
-            <div class="col-md-8">
-              <input type="text" placeholder="Sales Person Name" class="form-control" id="salesPersonName" formControlName="salesPersonName" [ngClass]="getFormControlCssClass(newSalesPersonForm.get('salesPersonName'), newSalesPersonForm)" />
-              <small class="form-text text-muted">Name of the sales Person | Can't be duplicate.</small>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonName', 'required', newSalesPersonForm)">{{getFormControlErrorMessage('salesPersonName', 'required')}}</span>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonName', 'minlength', newSalesPersonForm)">{{getFormControlErrorMessage('salesPersonName', 'minlength')}}</span>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonName', 'maxlength', newSalesPersonForm)">{{getFormControlErrorMessage('salesPersonName', 'maxlength')}}</span>
-            </div>
-          </div>
- 
-          <div class="form-group form-row">
-            <label for="salesPersonMobile" class="col-form-label col-md-4">Mobile:</label>
-            <div class="col-md-8">
-              <input type="text" placeholder="Mobile" class="form-control" id="salesPersonMobile" formControlName="salesPersonMobile" [ngClass]="getFormControlCssClass(newSalesPersonForm.get('salesPersonMobile'), newSalesPersonForm)" />
-              <small class="form-text text-muted">10 digit mobile number of the sales person | Can't be duplicate.</small>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonMobile', 'required', newSalesPersonForm)">{{getFormControlErrorMessage('salesPersonMobile', 'required')}}</span>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonMobile', 'pattern', newSalesPersonForm)">{{getFormControlErrorMessage('salesPersonMobile', 'pattern')}}</span>
-            </div>
-          </div>
-          <div class="form-group form-row">
-            <label for="email" class="col-form-label col-md-4">Email:</label>
-            <div class="col-md-8">
-              <input type="text" placeholder="Email" class="form-control" id="email" formControlName="email" [ngClass]="getFormControlCssClass(newSalesPersonForm.get('email'), newSalesPersonForm)" />
-              <small class="form-text text-muted">Email address of the salesPerson | Can't be duplicate.</small>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('email', 'required', newSalesPersonForm)">{{getFormControlErrorMessage('email', 'required')}}</span>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('email', 'email', newSalesPersonForm)">{{getFormControlErrorMessage('email', 'email')}}</span>
-            </div>
-          </div>
-          <div class="form-group form-row">
-            <label for="password" class="col-form-label col-md-4">Password:</label>
-            <div class="col-md-8">
-              <input type="password" placeholder="Password" class="form-control" id="password" formControlName="password" [ngClass]="getFormControlCssClass(newSalesPersonForm.get('password'), newSalesPersonForm)" />
-              <small class="form-text text-muted">At least one uppercase letter, one lowercase letter and one digit.</small>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('password', 'required', newSalesPersonForm)">{{getFormControlErrorMessage('password', 'required')}}</span>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('password', 'pattern', newSalesPersonForm)">{{getFormControlErrorMessage('password', 'pattern')}}</span>
-            </div>
-          </div>
 
 
           <div class="form-group form-row">
-            <label for="target" class="col-form-label col-md-4">Target:</label>
+            <label for="newPassword" class="col-form-label col-md-4">New Password:</label>
             <div class="col-md-8">
-              <input type="text" placeholder="Target" class="form-control" id="target" formControlName="target" [ngClass]="getFormControlCssClass(newSalesPersonForm.get('target'), newSalesPersonForm)" />
+              <input type="password" placeholder="New Password" class="form-control" id="newPassword" formControlName="password" />
             </div>
           </div>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnAddSalesPersonCancel">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnchngePasswordCancel">
             <i class="fa fa-times-circle"></i> Cancel
           </button>
-          <button type="submit" class="btn btn-success" (click)="onAddSalesPersonClick($event)" [disabled]="newSalesPersonDisabled">
-            <span *ngIf="!newSalesPersonDisabled"><i class="fa fa-save"></i> Save</span>
-            <span *ngIf="newSalesPersonDisabled"><i class="fa fa-circle-o-notch  fa-spin"></i> Saving</span>
+          <button type="submit" class="btn btn-success" (click)="onUpdatePasswordClick($event)" [disabled]="editpasswordDisabled">
+            <span *ngIf="!editpasswordDisabled"><i class="fa fa-save"></i> Save</span>
+            <span *ngIf="editpasswordDisabled"><i class="fa fa-circle-o-notch  fa-spin"></i> Saving</span>
           </button>
         </div>
       </div>
@@ -194,115 +84,45 @@
   </div>
 </form>
 
-<!-- Edit SalesPerson Modal -->
-<form [formGroup]="editSalesPersonForm">
-  <div class="modal fade" id="editSalesPersonModal" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Edit Retailer Modal -->
+<form [formGroup]="editRetailerForm">
+  <div class="modal fade" id="editRetailerModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header bg-info text-white">
-          <h5 class="modal-title">Update Sales Person</h5>
+          <h5 class="modal-title">Update Details</h5>
           <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="form-group form-row">
-            <label for="salesPersonName" class="col-form-label col-md-4">Sales Person Name:</label>
+            <label for="retailerMobile" class="col-form-label col-md-4">Name:</label>
             <div class="col-md-8">
-              <input type="text" placeholder="Sales Person Name" class="form-control" id="salesPersonName" formControlName="salesPersonName" [ngClass]="getFormControlCssClass(editSalesPersonForm.get('salesPersonName'), editSalesPersonForm)" />
-              <small class="form-text text-muted">Name of the salesPerson | Can't be duplicate.</small>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonName', 'required', editSalesPersonForm)">{{getFormControlErrorMessage('salesPersonName', 'required')}}</span>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonName', 'minlength', editSalesPersonForm)">{{getFormControlErrorMessage('salesPersonName', 'minlength')}}</span>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonName', 'maxlength', editSalesPersonForm)">{{getFormControlErrorMessage('salesPersonName', 'maxlength')}}</span>
-            </div>
-          </div>
-          <div class="form-group form-row">
-            <label for="salesPersonMobile" class="col-form-label col-md-4">Mobile:</label>
-            <div class="col-md-8">
-              <input type="text" placeholder="Mobile" class="form-control" id="salesPersonMobile" formControlName="salesPersonMobile" [ngClass]="getFormControlCssClass(editSalesPersonForm.get('salesPersonMobile'), editSalesPersonForm)" />
-              <small class="form-text text-muted">10 digit mobile number of the sales person | Can't be duplicate.</small>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonMobile', 'required', editSalesPersonForm)">{{getFormControlErrorMessage('salesPersonMobile', 'required')}}</span>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salesPersonMobile', 'pattern', editSalesPersonForm)">{{getFormControlErrorMessage('salesPersonMobile', 'pattern')}}</span>
-            </div>
-          </div>
-          <div class="form-group form-row">
-            <label for="email" class="col-form-label col-md-4">Email:</label>
-            <div class="col-md-8">
-              <input type="text" placeholder="Email" class="form-control" id="email" formControlName="email" [ngClass]="getFormControlCssClass(editSalesPersonForm.get('email'), editSalesPersonForm)" />
-              <small class="form-text text-muted">Email address of the sales person | Can't be duplicate.</small>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('email', 'required', editSalesPersonForm)">{{getFormControlErrorMessage('email', 'required')}}</span>
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('email', 'email', editSalesPersonForm)">{{getFormControlErrorMessage('email', 'email')}}</span>
+              <input type="text" placeholder="Email" class="form-control" id="retailerName" formControlName="retailerName" />
+              <small class="form-text text-muted">Enter Retailer Name.</small>
             </div>
           </div>
 
           <div class="form-group form-row">
-            <label for="salary" class="col-form-label col-md-4">Salary:</label>
+            <label for="retailerMobile" class="col-form-label col-md-4">Mobile:</label>
             <div class="col-md-8">
-              <input type="text" placeholder="Salary" class="form-control" id="salary" formControlName="salary" [ngClass]="getFormControlCssClass(newSalesPersonForm.get('salary'), newSalesPersonForm)" />
-              <span class="text-danger" *ngIf="getCanShowFormControlErrorMessage('salary', 'required', newSalesPersonForm)">{{getFormControlErrorMessage('salary', 'required')}}</span>
+              <input type="text" placeholder="Mobile" class="form-control" id="retailerMobile" formControlName="retailerMobile" />
+              <small class="form-text text-muted">10 digit mobile number.</small>
             </div>
           </div>
 
-          <div class="form-group form-row">
-            <label for="bonus" class="col-form-label col-md-4">Bonus:</label>
-            <div class="col-md-8">
-              <input type="text" placeholder="Bonus" class="form-control" id="bonus" formControlName="bonus" [ngClass]="getFormControlCssClass(newSalesPersonForm.get('bonus'), newSalesPersonForm)" />
-            </div>
-          </div>
-
-          <div class="form-group form-row">
-            <label for="target" class="col-form-label col-md-4">Target:</label>
-            <div class="col-md-8">
-              <input type="text" placeholder="Target" class="form-control" id="target" formControlName="target" [ngClass]="getFormControlCssClass(newSalesPersonForm.get('target'), newSalesPersonForm)" />
-            </div>
-          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnUpdateSalesPersonCancel">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnUpdateRetailerCancel">
             <i class="fa fa-times-circle"></i> Cancel
           </button>
-          <button type="submit" class="btn btn-success" (click)="onUpdateSalesPersonClick($event)" [disabled]="editSalesPersonDisabled">
-            <span *ngIf="!editSalesPersonDisabled"><i class="fa fa-save"></i> Save</span>
-            <span *ngIf="editSalesPersonDisabled"><i class="fa fa-circle-o-notch  fa-spin"></i> Saving</span>
+          <button type="submit" class="btn btn-success" (click)="onUpdateRetailerClick($event)" [disabled]="editRetailerDisabled">
+            <span *ngIf="!editRetailerDisabled"><i class="fa fa-save"></i> Save</span>
+            <span *ngIf="editRetailerDisabled"><i class="fa fa-circle-o-notch  fa-spin"></i> Saving</span>
           </button>
         </div>
       </div>
     </div>
   </div>
 </form>
-
-
-<!-- Delete SalesPerson Modal -->
-<form [formGroup]="deleteSalesPersonForm">
-  <div class="modal fade" id="deleteSalesPersonModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-info text-white">
-          <h5 class="modal-title">Delete Sales Person</h5>
-          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h5 class="mb-4">Are you sure to delete this Sales Person?</h5>
-          <div class="form-group form-row">
-            <label for="salesPersonName" class="col-form-label col-md-4">Sales Person Name:</label>
-            <div class="col-md-8">
-              <input type="text" placeholder="Sales Person Name" readonly="readonly" class="form-control-plaintext" id="salesPersonName" formControlName="salesPersonName" />
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnDeleteSalesPersonCancel">
-            <i class="fa fa-times-circle"></i> Cancel
-          </button>
-          <button type="submit" class="btn btn-danger" (click)="onDeleteSalesPersonConfirmClick($event)" [disabled]="deleteSalesPersonDisabled">
-            <span *ngIf="!deleteSalesPersonDisabled"><i class="fa fa-save"></i> Delete</span>
-            <span *ngIf="deleteSalesPersonDisabled"><i class="fa fa-circle-o-notch  fa-spin"></i> Deleting</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
-

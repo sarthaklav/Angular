@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAccountService } from '../../Services/user-account.service';
 import { User } from '../../Models/user';
+import { RetailersService } from 'src/app/Services/retailers.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isInvalidLogin: boolean = false;
 
-  constructor(private userAccountService: UserAccountService, private router: Router) {
+  constructor(private userAccountService: UserAccountService, private router: Router, private retailerService: RetailersService) {
     this.loginForm = new FormGroup(
       {
         email: new FormControl(null),
@@ -30,9 +31,10 @@ export class LoginComponent implements OnInit {
         console.log(response);
         this.userAccountService.currentUser = new User(this.loginForm.value.email, response[0].retailerName);
         this.userAccountService.currentUserType = "Retailer";
-        this.userAccountService.currentUserId = response[0].retailerId;
+
+        this.retailerService.currentRetailer = response[0];
         this.userAccountService.isLoggedIn = true;
-        this.router.navigate(["/retailer", "profile"]);
+        this.router.navigate(["/retailer", "home"]);
       }
       else {
         this.isInvalidLogin = true;

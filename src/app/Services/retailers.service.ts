@@ -14,6 +14,8 @@ export class RetailersService
 
   }
 
+  currentRetailer: Retailer = null;
+
   AddRetailer(retailer: Retailer): Observable<boolean>
   {
     retailer.creationDateTime = new Date().toLocaleDateString();

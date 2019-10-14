@@ -8,16 +8,16 @@ import { environment } from '../environments/environment.prod';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
-
 import { GreatOutdoorsDataService } from './InMemoryWebAPIServices/greatOutdoors-data.service';
-
+import { RetailerModule } from './RetailerModule/retailer.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-   LoginComponent,
+    LoginComponent
+   
   ],
   imports: [
     BrowserModule,
@@ -26,9 +26,9 @@ import { GreatOutdoorsDataService } from './InMemoryWebAPIServices/greatOutdoors
     FormsModule,
     ReactiveFormsModule,
     environment.production ? HttpClientInMemoryWebApiModule.forRoot(GreatOutdoorsDataService, { delay: 1000 }) : [],
-    //RetailerModule
-    //import { RetailerProfileComponent } from './RetailerModule/retailer-profile/retailer-profile.component';
-    //import { RetailerModule } from './RetailerModule/retailer.module';
+    RetailerModule
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

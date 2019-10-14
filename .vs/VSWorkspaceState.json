@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\Components",
+    "\\src\\app\\Components\\login",
+    "\\src\\app\\Components\\register",
+    "\\src\\app\\InMemoryWebAPIServices",
+    "\\src\\app\\Models",
+    "\\src\\app\\RetailerModule",
+    "\\src\\app\\Services"
+  ],
+  "SelectedNode": "\\src\\app\\RetailerModule\\Retailer-Home\\retailer-home.component.html",
+  "PreviewInSolutionExplorer": false
+}

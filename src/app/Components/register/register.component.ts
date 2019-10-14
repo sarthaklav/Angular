@@ -67,7 +67,7 @@ export class RegisterComponent extends GreatOutdoorsComponentBase implements OnI
           this.userAccountService.currentUserType = "Retailer";
           this.userAccountService.currentUserId = newResponse[0].retailerId;
           this.userAccountService.isLoggedIn = true;
-          this.router.navigate(["/retailer", "profile"]);
+          this.router.navigate(["/retailer", "home"]);
         });
 
         

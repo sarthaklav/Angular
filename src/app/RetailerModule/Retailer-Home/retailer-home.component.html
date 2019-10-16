@@ -1,18 +1,12 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-   
-    <li class="breadcrumb-item active" aria-current="page">Home</li>
-  </ol>
-</nav>
 
-<div class="row">
-  <div class="col-md-12">
-    <h3>Your Profile</h3>
-    <button>Place Order</button>
-    <button>Add Address</button>
-  </div>
+<div >
+  
+    <h3 style="color:midnightblue; margin-top:10px;text-align:center">Your Profile</h3>
+ </div>
 
-  <table class="table col-md-6 table-bordered" align="center">
+  
+    <div>
+  <table class="table col-md-6 " style="border:none; text-align:left; column-rule-style:none" align="center">
 
     <tr>
       <th scope="row">Name</th>
@@ -65,7 +59,10 @@
           <div class="form-group form-row">
             <label for="newPassword" class="col-form-label col-md-4">New Password:</label>
             <div class="col-md-8">
-              <input type="password" placeholder="New Password" class="form-control" id="newPassword" formControlName="password" />
+              <input type="password" placeholder="New Password" class="form-control" id="newPassword" formControlName="password" [ngClass]="getFormControlCssClass(changePasswordForm.get('password'), changePasswordForm)" />
+              <small class="form-text text-muted">At least one uppercase letter, one lowercase letter and one digit.</small>
+              <span class="text-danger" *ngIf="changePasswordForm.get('password').invalid && changePasswordForm.get('password').errors.required && (changePasswordForm.get('password').touched || changePasswordForm.get('password').dirty || changePasswordForm.submitted)">Password can not be blank</span>
+              <span class="text-danger" *ngIf="changePasswordForm.get('password').invalid && changePasswordForm.get('password').errors.pattern && (changePasswordForm.get('password').touched || changePasswordForm.get('password').dirty || changePasswordForm.submitted)">Pasword is invalid</span>
             </div>
           </div>
 
@@ -99,16 +96,18 @@
           <div class="form-group form-row">
             <label for="retailerMobile" class="col-form-label col-md-4">Name:</label>
             <div class="col-md-8">
-              <input type="text" placeholder="Email" class="form-control" id="retailerName" formControlName="retailerName" />
-              <small class="form-text text-muted">Enter Retailer Name.</small>
+              <input type="text" placeholder="Email" class="form-control" id="retailerName" formControlName="retailerName"  />
+              <small class="form-text text-muted">Update Retailer Name.</small>
             </div>
           </div>
 
           <div class="form-group form-row">
             <label for="retailerMobile" class="col-form-label col-md-4">Mobile:</label>
             <div class="col-md-8">
-              <input type="text" placeholder="Mobile" class="form-control" id="retailerMobile" formControlName="retailerMobile" />
-              <small class="form-text text-muted">10 digit mobile number.</small>
+              <input type="text" placeholder="Mobile" class="form-control" id="retailerMobile" formControlName="retailerMobile" [ngClass]="getFormControlCssClass(editRetailerForm.get('retailerMobile'), editRetailerForm)"  />
+              <small class="form-text text-muted">10 digit mobile number of the retailer | Can't be duplicate.</small>
+              <span class="text-danger" *ngIf="editRetailerForm.get('retailerMobile').invalid && editRetailerForm.get('retailerMobile').errors.required && (editRetailerForm.get('retailerMobile').touched || editRetailerForm.get('retailerMobile').dirty || editRetailerForm.submitted)">Mobile can not be blank</span>
+              <span class="text-danger" *ngIf="editRetailerForm.get('retailerMobile').invalid && editRetailerForm.get('retailerMobile').errors.pattern && (editRetailerForm.get('retailerMobile').touched || editRetailerForm.get('retailerMobile').dirty || editRetailerForm.submitted)">Mobile should contain 10 digits only</span>
             </div>
           </div>
 

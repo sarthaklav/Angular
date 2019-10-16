@@ -4,6 +4,7 @@ import { RetailersService } from 'src/app/Services/retailers.service';
 import { UserAccountService } from 'src/app/Services/user-account.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as $ from "jquery";
+import { createWiresService } from 'selenium-webdriver/firefox';
 
 
 @Component({
@@ -105,8 +106,9 @@ export class RetailerHomeComponent implements OnInit {
     if (this.changePasswordForm.valid) {
       this.editpasswordDisabled = true;
       var retailer: Retailer = this.changePasswordForm.value;
-
+      console.log(retailer);
       this.retailersService.UpdateRetailer(retailer).subscribe((updateResponse) => {
+        console.log(updateResponse);
         this.changePasswordForm.reset();
         console.log(updateResponse);
         $("#btnchngePasswordCancel").trigger("click");
